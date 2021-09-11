@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRef, ref, onMounted } from 'vue';
+import { defineComponent, toRef, ref, onMounted, PropType } from 'vue';
 import { DateTime, Duration } from 'luxon';
 
 /**
@@ -31,9 +31,9 @@ export default defineComponent({
   name: 'CountDownTimer',
 
   props: {
-    timerId: { type: String, default: '<no timer-id set>' },
+    timerId: { type: String, default: '[timerId not set]' },
     expireAfter: { type: String },
-    expireAt: { type: [String, DateTime] },
+    expireAt: { type: Object as PropType<string | DateTime> },
     durationFormat: { type: String, default: 'hh:mm:ss' },
   },
 
