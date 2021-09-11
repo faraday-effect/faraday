@@ -11,7 +11,7 @@ export /* async */ function getClientOptions /* options?: Partial<BootFileParams
         uri:
           process.env.GRAPHQL_URI ||
           // Change to your graphql endpoint.
-          'https://example.com/graphql',
+          'http://localhost:3000/graphql',
       }),
 
       cache: new InMemoryCache(),
