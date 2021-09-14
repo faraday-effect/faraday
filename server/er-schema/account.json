@@ -1,0 +1,46 @@
+{
+  "entity": {
+    "name": "Account",
+    "description": "User account",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "email",
+        "description": "User email (also used as account name)",
+        "type": "string"
+      },
+      {
+        "name": "password",
+        "description": "Hashed password",
+        "type": "string"
+      },
+      {
+        "name": "firstName",
+        "description": "User given name",
+        "type": "string"
+      },
+      {
+        "name": "lastName",
+        "description": "User surname",
+        "type": "string"
+      },
+      {
+        "name": "campusId",
+        "description": "Campus ID (e.g., student or faculty ID)",
+        "type": "string"
+      },
+      {
+        "name": "officePhone",
+        "description": "Office phone",
+        "type": "string",
+        "nullable": true
+      },
+      {
+        "name": "mobilePhone",
+        "description": "Mobile phone",
+        "type": "string",
+        "nullable": true
+      }
+    ]
+  }
+}
