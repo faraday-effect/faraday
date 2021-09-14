@@ -1,0 +1,28 @@
+{
+  "entity": {
+    "name": "CourseOffering",
+    "description": "Course offering",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "creditHours",
+        "type": "integer",
+        "description": "Number of credit hours"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "term",
+      "to": "term",
+      "type": "manyToOne",
+      "description": "Term offered"
+    },
+    {
+      "name": "course",
+      "to": "course",
+      "type": "manyToOne",
+      "description": "Course being offered"
+    }
+  ]
+}

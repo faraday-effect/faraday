@@ -1,0 +1,43 @@
+{
+  "entity": {
+    "name": "Activity",
+    "description": "Course activity (low-level organizational unit)",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "description": "Title for this activity",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "description": "Description of this activity",
+        "type": "text"
+      },
+      {
+        "name": "sequence",
+        "description": "Collating sequence of activities within topic",
+        "type": "integer"
+      },
+      {
+        "name": "details",
+        "description": "Details of this activity",
+        "type": "json"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "topic",
+      "to": "topic",
+      "type": "manyToOne",
+      "description": "Topic containing this activity"
+    },
+    {
+      "name": "resources",
+      "to": "resource",
+      "type": "oneToMany",
+      "description": "Resources for this activity"
+    }
+  ]
+}

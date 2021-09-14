@@ -1,0 +1,47 @@
+{
+  "entity": {
+    "name": "Resource",
+    "description": "Resources for one of a module, topic, or activity",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "description": "Title of this resource",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "description": "Description of this resource",
+        "type": "text"
+      },
+      {
+        "name": "details",
+        "description": "Details of this resource",
+        "type": "json"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "module",
+      "to": "module",
+      "type": "manyToOne",
+      "description": "Module using this resource",
+      "nullable": true
+    },
+    {
+      "name": "topic",
+      "to": "topic",
+      "type": "manyToOne",
+      "description": "Topic using this resource",
+      "nullable": true
+    },
+    {
+      "name": "activity",
+      "to": "activity",
+      "type": "manyToOne",
+      "description": "Activity using this resource",
+      "nullable": true
+    }
+  ]
+}

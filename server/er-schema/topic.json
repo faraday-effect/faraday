@@ -1,0 +1,44 @@
+{
+  "entity": {
+    "name": "Topic",
+    "description": "Course topic (mid-level organizational unit)",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "description": "Title for this topic",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "description": "Description of this topic",
+        "type": "string"
+      },
+      {
+        "name": "sequence",
+        "description": "Collating sequence of topics within module",
+        "type": "integer"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "module",
+      "to": "module",
+      "type": "manyToOne",
+      "description": "Module containing this topic"
+    },
+    {
+      "name": "resources",
+      "to": "resource",
+      "type": "oneToMany",
+      "description": "Resources for this topic"
+    },
+    {
+      "name": "activities",
+      "to": "activity",
+      "type": "oneToMany",
+      "description": "Activities for this topic"
+    }
+  ]
+}

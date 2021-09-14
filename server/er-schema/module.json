@@ -1,0 +1,44 @@
+{
+  "entity": {
+    "name": "Module",
+    "description": "Course module (top-level organizational unit)",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "description": "Title for this module",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "description": "Description of this module",
+        "type": "string"
+      },
+      {
+        "name": "sequence",
+        "description": "Collating sequence of modules within offering",
+        "type": "integer"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "offering",
+      "to": "offering",
+      "type": "manyToOne",
+      "description": "Offering for this module"
+    },
+    {
+      "name": "resources",
+      "to": "resource",
+      "type": "oneToMany",
+      "description": "Resources for this module"
+    },
+    {
+      "name": "topics",
+      "to": "topic",
+      "type": "oneToMany",
+      "description": "Topics for this module"
+    }
+  ]
+}

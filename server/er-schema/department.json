@@ -1,0 +1,22 @@
+{
+  "entity": {
+    "name": "Department",
+    "description": "Academic department",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "name",
+        "type": "string",
+        "description": "Department name (e.g., `Computer Science`)"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "courses",
+      "to": "course",
+      "type": "oneToMany",
+      "description": "Courses offered by this department"
+    }
+  ]
+}

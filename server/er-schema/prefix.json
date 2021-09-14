@@ -1,0 +1,27 @@
+{
+  "entity": {
+    "name": "CoursePrefix",
+    "description": "Course prefix (e.g., `COS`, `PHY`)",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "prefix",
+        "type": "string",
+        "description": "Prefix (e.g., `COS`)"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "description": "Longer description (e.g., `Computer Science`)"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "courses",
+      "to": "course",
+      "type": "oneToMany",
+      "description": "Courses using this prefix"
+    }
+  ]
+}
