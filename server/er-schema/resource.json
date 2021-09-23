@@ -24,21 +24,21 @@
   "relationships": [
     {
       "name": "module",
-      "to": "module",
+      "to": "Module",
       "type": "manyToOne",
       "description": "Module using this resource",
       "nullable": true
     },
     {
       "name": "topic",
-      "to": "topic",
+      "to": "Topic",
       "type": "manyToOne",
       "description": "Topic using this resource",
       "nullable": true
     },
     {
       "name": "activity",
-      "to": "activity",
+      "to": "Activity",
       "type": "manyToOne",
       "description": "Activity using this resource",
       "nullable": true

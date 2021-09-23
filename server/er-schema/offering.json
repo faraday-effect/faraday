@@ -1,6 +1,6 @@
 {
   "entity": {
-    "name": "CourseOffering",
+    "name": "Offering",
     "description": "Course offering",
     "pk": "id",
     "attributes": [
@@ -14,15 +14,21 @@
   "relationships": [
     {
       "name": "term",
-      "to": "term",
+      "to": "Term",
       "type": "manyToOne",
       "description": "Term offered"
     },
     {
       "name": "course",
-      "to": "course",
+      "to": "Course",
       "type": "manyToOne",
       "description": "Course being offered"
+    },
+    {
+      "name": "modules",
+      "to": "Module",
+      "type": "oneToMany",
+      "description": "Modules for this course offering"
     }
   ]
 }

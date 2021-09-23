@@ -19,19 +19,19 @@
   "relationships": [
     {
       "name": "prefix",
-      "to": "course_prefix",
+      "to": "Prefix",
       "type": "manyToOne",
       "description": "Course prefix for this course"
     },
     {
       "name": "department",
-      "to": "department",
+      "to": "Department",
       "type": "manyToOne",
       "description": "Department offering this course"
     },
     {
       "name": "offerings",
-      "to": "offering",
+      "to": "Offering",
       "type": "oneToMany",
       "description": "Offerings of this course"
     }

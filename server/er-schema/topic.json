@@ -24,19 +24,19 @@
   "relationships": [
     {
       "name": "module",
-      "to": "module",
+      "to": "Module",
       "type": "manyToOne",
       "description": "Module containing this topic"
     },
     {
       "name": "resources",
-      "to": "resource",
+      "to": "Resource",
       "type": "oneToMany",
       "description": "Resources for this topic"
     },
     {
       "name": "activities",
-      "to": "activity",
+      "to": "Activity",
       "type": "oneToMany",
       "description": "Activities for this topic"
     }

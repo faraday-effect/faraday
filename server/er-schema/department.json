@@ -14,7 +14,7 @@
   "relationships": [
     {
       "name": "courses",
-      "to": "course",
+      "to": "Course",
       "type": "oneToMany",
       "description": "Courses offered by this department"
     }

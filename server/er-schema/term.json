@@ -1,6 +1,6 @@
 {
   "entity": {
-    "name": "term",
+    "name": "Term",
     "description": "Academic term",
     "pk": "id",
     "attributes": [
@@ -24,7 +24,7 @@
   "relationships": [
     {
       "name": "offerings",
-      "to": "offering",
+      "to": "Offering",
       "type": "oneToMany",
       "description": "Offerings of courses during this term"
     }

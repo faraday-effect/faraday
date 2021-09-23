@@ -1,6 +1,6 @@
 {
   "entity": {
-    "name": "CoursePrefix",
+    "name": "Prefix",
     "description": "Course prefix (e.g., `COS`, `PHY`)",
     "pk": "id",
     "attributes": [
@@ -19,7 +19,7 @@
   "relationships": [
     {
       "name": "courses",
-      "to": "course",
+      "to": "Course",
       "type": "oneToMany",
       "description": "Courses using this prefix"
     }

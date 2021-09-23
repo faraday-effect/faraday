@@ -24,19 +24,19 @@
   "relationships": [
     {
       "name": "offering",
-      "to": "offering",
+      "to": "Offering",
       "type": "manyToOne",
       "description": "Offering for this module"
     },
     {
       "name": "resources",
-      "to": "resource",
+      "to": "Resource",
       "type": "oneToMany",
       "description": "Resources for this module"
     },
     {
       "name": "topics",
-      "to": "topic",
+      "to": "Topic",
       "type": "oneToMany",
       "description": "Topics for this module"
     }

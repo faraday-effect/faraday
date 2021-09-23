@@ -29,13 +29,13 @@
   "relationships": [
     {
       "name": "topic",
-      "to": "topic",
+      "to": "Topic",
       "type": "manyToOne",
       "description": "Topic containing this activity"
     },
     {
       "name": "resources",
-      "to": "resource",
+      "to": "Resource",
       "type": "oneToMany",
       "description": "Resources for this activity"
     }
