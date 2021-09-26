@@ -7,7 +7,185 @@ type Status {
   status: String!
 }
 
+"""Course activity (low-level organizational unit)"""
+type Activity {
+  """Primary key"""
+  id: Int!
+
+  """Title for this activity"""
+  title: String!
+
+  """Description of this activity"""
+  description: String!
+
+  """Collating sequence of activities within topic"""
+  sequence: Int!
+
+  """Details of this activity"""
+  details: String!
+  topic: Topic!
+  resources: [Resource!]!
+}
+
+"""Course"""
+type Course {
+  """Primary key"""
+  id: Int!
+
+  """Course number (e.g., `243`, `103H`)"""
+  number: String!
+
+  """Course title"""
+  title: String!
+  prefix: Prefix!
+  department: Department!
+  offerings: [Offering!]!
+}
+
+"""Academic department"""
+type Department {
+  """Primary key"""
+  id: Int!
+
+  """Department name (e.g., `Computer Science`)"""
+  name: String!
+  courses: [Course!]!
+}
+
+"""Course module (top-level organizational unit)"""
+type Module {
+  """Primary key"""
+  id: Int!
+
+  """Title for this module"""
+  title: String!
+
+  """Description of this module"""
+  description: String!
+
+  """Collating sequence of modules within offering"""
+  sequence: Int!
+  offering: Offering!
+  resources: [Resource!]!
+  topics: [Topic!]!
+}
+
+"""Course offering"""
+type Offering {
+  """Primary key"""
+  id: Int!
+
+  """Number of credit hours"""
+  creditHours: Int!
+  term: Term!
+  course: Course!
+  modules: [Module!]!
+}
+
+"""Course prefix (e.g., `COS`, `PHY`)"""
+type Prefix {
+  """Primary key"""
+  id: Int!
+
+  """Prefix (e.g., `COS`)"""
+  prefix: String!
+
+  """Longer description (e.g., `Computer Science`)"""
+  description: String!
+  courses: [Course!]!
+}
+
+"""Resources for one of a module, topic, or activity"""
+type Resource {
+  """Primary key"""
+  id: Int!
+
+  """Title of this resource"""
+  title: String!
+
+  """Description of this resource"""
+  description: String!
+
+  """Details of this resource"""
+  details: String!
+  module: Module!
+  topic: Topic!
+  activity: Activity!
+}
+
+"""Academic term"""
+type Term {
+  """Primary key"""
+  id: Int!
+
+  """Term name (e.g., 'Fall 2021')"""
+  name: String!
+
+  """Starting date of term"""
+  startDate: DateTime!
+
+  """Ending date of term"""
+  endDate: DateTime!
+  offerings: [Offering!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""Course topic (mid-level organizational unit)"""
+type Topic {
+  """Primary key"""
+  id: Int!
+
+  """Title for this topic"""
+  title: String!
+
+  """Description of this topic"""
+  description: String!
+
+  """Collating sequence of topics within module"""
+  sequence: Int!
+  module: Module!
+  resources: [Resource!]!
+  activities: [Activity!]!
+}
+
 type Query {
   """Read current status"""
   readStatus: Status!
+  readResource: Resource!
+  readResources: [Resource!]!
+}
+
+type Mutation {
+  createResource(createInput: ResourceCreateInput!): Resource!
+  updateResource(updateInput: ResourceUpdateInput!): Resource!
+  deleteResource(id: Int!): Int!
+}
+
+input ResourceCreateInput {
+  """Title of this resource"""
+  title: String!
+
+  """Description of this resource"""
+  description: String!
+
+  """Details of this resource"""
+  details: String!
+}
+
+input ResourceUpdateInput {
+  """Primary key"""
+  id: Int!
+
+  """Title of this resource"""
+  title: String
+
+  """Description of this resource"""
+  description: String
+
+  """Details of this resource"""
+  details: String
 }

@@ -1,34 +1,34 @@
-import { Entity, OneToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Field, InputType, Int, ObjectType } from '@nestjs/graphql';
-import { Term, Course, Module } from '.';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
+import { ObjectType, InputType, Field, Int } from "@nestjs/graphql";
+import { Term, Course, Module } from ".";
 import { FieldColumn } from 'src/decorators';
 
 @Entity()
-@ObjectType({ description: 'Course offering' })
+@ObjectType({ description: "Course offering" })
 export class Offering {
   @Field(() => Int, { description: 'Primary key' })
   @PrimaryGeneratedColumn({ comment: 'Primary key' })
   id: number;
 
-  @FieldColumn('Number of credit hours', () => Int)
+  @FieldColumn("Number of credit hours", () => Int)
   creditHours: number;
 
   @Field(() => Term)
-  @ManyToOne(() => Term, (term) => term.offerings)
+  @ManyToOne(() => Term, term => term.offerings)
   term: Term;
 
   @Field(() => Course)
-  @ManyToOne(() => Course, (course) => course.offerings)
+  @ManyToOne(() => Course, course => course.offerings)
   course: Course;
 
   @Field(() => [Module])
-  @OneToMany(() => Module, (module) => module.offering)
+  @OneToMany(() => Module, module => module.offering)
   modules: Module[];
 }
 
 @InputType()
 export class OfferingCreateInput {
-  @FieldColumn('Number of credit hours', () => Int)
+  @FieldColumn("Number of credit hours", () => Int)
   creditHours: number;
 }
 
@@ -37,6 +37,7 @@ export class OfferingUpdateInput {
   @Field(() => Int, { description: 'Primary key' })
   id: number;
 
-  @FieldColumn('Number of credit hours', () => Int, { nullable: true })
+  @FieldColumn("Number of credit hours", () => Int, { nullable: true })
   creditHours?: number;
 }
+

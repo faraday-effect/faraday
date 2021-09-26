@@ -6,6 +6,7 @@ import { join } from 'path';
 import { FileModule } from './file/file.module';
 import { TelemetryModule } from './telemetry/telemetry.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ContentModule } from './content/content.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     FileModule,
     TelemetryModule,
+    ContentModule,
   ],
   controllers: [],
   providers: [AppService, ProjectorGateway],

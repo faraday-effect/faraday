@@ -1,10 +1,10 @@
-import { Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Field, InputType, Int, ObjectType } from '@nestjs/graphql';
-import { Offering } from '.';
+import { Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { ObjectType, InputType, Field, Int } from "@nestjs/graphql";
+import { Offering } from ".";
 import { FieldColumn } from 'src/decorators';
 
 @Entity()
-@ObjectType({ description: 'Academic term' })
+@ObjectType({ description: "Academic term" })
 export class Term {
   @Field(() => Int, { description: 'Primary key' })
   @PrimaryGeneratedColumn({ comment: 'Primary key' })
@@ -13,14 +13,14 @@ export class Term {
   @FieldColumn("Term name (e.g., 'Fall 2021')")
   name: string;
 
-  @FieldColumn('Starting date of term')
+  @FieldColumn("Starting date of term")
   startDate: Date;
 
-  @FieldColumn('Ending date of term')
+  @FieldColumn("Ending date of term")
   endDate: Date;
 
   @Field(() => [Offering])
-  @OneToMany(() => Offering, (offering) => offering.term)
+  @OneToMany(() => Offering, offering => offering.term)
   offerings: Offering[];
 }
 
@@ -29,10 +29,10 @@ export class TermCreateInput {
   @FieldColumn("Term name (e.g., 'Fall 2021')")
   name: string;
 
-  @FieldColumn('Starting date of term')
+  @FieldColumn("Starting date of term")
   startDate: Date;
 
-  @FieldColumn('Ending date of term')
+  @FieldColumn("Ending date of term")
   endDate: Date;
 }
 
@@ -44,9 +44,10 @@ export class TermUpdateInput {
   @FieldColumn("Term name (e.g., 'Fall 2021')", { nullable: true })
   name?: string;
 
-  @FieldColumn('Starting date of term', { nullable: true })
+  @FieldColumn("Starting date of term", { nullable: true })
   startDate?: Date;
 
-  @FieldColumn('Ending date of term', { nullable: true })
+  @FieldColumn("Ending date of term", { nullable: true })
   endDate?: Date;
 }
+
