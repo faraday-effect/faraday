@@ -45,7 +45,7 @@ export class ResourceCreateInput {
   description: string;
 
   @Field(() => GraphQLJSONObject, { description: 'Details of this resource' })
-  details: any;
+  details: Object;
 }
 
 @InputType()
