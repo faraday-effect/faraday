@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'typeorm';
 import { ObjectType, InputType, Field, Int } from '@nestjs/graphql';
-import { Offering, DateRange } from '.';
-import { FieldColumn } from 'src/decorators';
+import { FieldColumn } from '@/decorators';
+import { DateRange, Offering } from '@/schedule/models';
 
 @Entity()
 @ObjectType({ description: 'Academic term' })

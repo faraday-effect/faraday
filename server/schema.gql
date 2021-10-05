@@ -32,6 +32,28 @@ The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](
 """
 scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
+"""Named range of dates"""
+type DateRange {
+  """Primary key"""
+  id: Int!
+
+  """Name of this range"""
+  name: String!
+
+  """Starting date of range (inclusive)"""
+  startDate: DateTime!
+
+  """Ending date of range (inclusive)"""
+  endDate: DateTime!
+  instructionDates: [Term!]!
+  finalsDates: [Term!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 """Course"""
 type Course {
   """Primary key"""
@@ -57,6 +79,43 @@ type Department {
   courses: [Course!]!
 }
 
+"""Course prefix (e.g., `COS`, `PHY`)"""
+type Prefix {
+  """Primary key"""
+  id: Int!
+
+  """Prefix (e.g., `COS`)"""
+  prefix: String!
+
+  """Longer description (e.g., `Computer Science`)"""
+  description: String!
+  courses: [Course!]!
+}
+
+"""Course offering"""
+type Offering {
+  """Primary key"""
+  id: Int!
+
+  """Number of credit hours"""
+  creditHours: Int!
+  term: Term!
+  course: Course!
+  modules: [Module!]!
+}
+
+"""Academic term"""
+type Term {
+  """Primary key"""
+  id: Int!
+
+  """Term name (e.g., 'Fall 2021')"""
+  name: String!
+  offerings: [Offering!]!
+  instructionDates: DateRange!
+  finalsDates: DateRange!
+}
+
 """Course module (top-level organizational unit)"""
 type Module {
   """Primary key"""
@@ -73,31 +132,6 @@ type Module {
   offering: Offering!
   resources: [Resource!]!
   topics: [Topic!]!
-}
-
-"""Course offering"""
-type Offering {
-  """Primary key"""
-  id: Int!
-
-  """Number of credit hours"""
-  creditHours: Int!
-  term: Term!
-  course: Course!
-  modules: [Module!]!
-}
-
-"""Course prefix (e.g., `COS`, `PHY`)"""
-type Prefix {
-  """Primary key"""
-  id: Int!
-
-  """Prefix (e.g., `COS`)"""
-  prefix: String!
-
-  """Longer description (e.g., `Computer Science`)"""
-  description: String!
-  courses: [Course!]!
 }
 
 """Resources for one of a module, topic, or activity"""
@@ -118,18 +152,6 @@ type Resource {
   activity: Activity!
 }
 
-"""Academic term"""
-type Term {
-  """Primary key"""
-  id: Int!
-
-  """Term name (e.g., 'Fall 2021')"""
-  name: String!
-  offerings: [Offering!]!
-  instructionDates: DateRange!
-  finalsDates: DateRange!
-}
-
 """Course topic (mid-level organizational unit)"""
 type Topic {
   """Primary key"""
@@ -148,39 +170,52 @@ type Topic {
   activities: [Activity!]!
 }
 
-"""Named range of dates"""
-type DateRange {
-  """Primary key"""
-  id: Int!
-
-  """Name of this range"""
-  name: String!
-
-  """Starting date of range (inclusive)"""
-  startDate: DateTime!
-
-  """Ending date of range (inclusive)"""
-  endDate: DateTime!
-  instructionDates: [Term!]!
-  finalsDates: [Term!]!
-}
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
-
 type Query {
   """Read current status"""
   readStatus: Status!
+  readOneModule: Module!
+  readAllModules: [Module!]!
   readOneResource: Resource!
   readAllResources: [Resource!]!
+  readOneCourse: Course!
+  readAllCourses: [Course!]!
 }
 
 type Mutation {
+  createModule(createInput: ModuleCreateInput!): Module!
+  updateModule(updateInput: ModuleUpdateInput!): Module!
+  deleteModule(id: Int!): Int!
   createResource(createInput: ResourceCreateInput!): Resource!
   updateResource(updateInput: ResourceUpdateInput!): Resource!
   deleteResource(id: Int!): Int!
+  createCourse(createInput: CourseCreateInput!): Course!
+  updateCourse(updateInput: CourseUpdateInput!): Course!
+  deleteCourse(id: Int!): Int!
+}
+
+input ModuleCreateInput {
+  """Title for this module"""
+  title: String!
+
+  """Description of this module"""
+  description: String!
+
+  """Collating sequence of modules within offering"""
+  sequence: Int!
+}
+
+input ModuleUpdateInput {
+  """Primary key"""
+  id: Int!
+
+  """Title for this module"""
+  title: String
+
+  """Description of this module"""
+  description: String
+
+  """Collating sequence of modules within offering"""
+  sequence: Int
 }
 
 input ResourceCreateInput {
@@ -206,4 +241,23 @@ input ResourceUpdateInput {
 
   """Details of this resource"""
   details: JSONObject
+}
+
+input CourseCreateInput {
+  """Course number (e.g., `243`, `103H`)"""
+  number: String!
+
+  """Course title"""
+  title: String!
+}
+
+input CourseUpdateInput {
+  """Primary key"""
+  id: Int!
+
+  """Course number (e.g., `243`, `103H`)"""
+  number: String
+
+  """Course title"""
+  title: String
 }

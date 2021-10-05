@@ -1,7 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 import { ObjectType, InputType, Field, Int } from '@nestjs/graphql';
-import { Prefix, Department, Offering } from '.';
 import { FieldColumn } from '@/decorators';
+import { Department, Prefix } from '@/catalog/models';
+import { Offering } from '@/schedule/models';
 
 @Entity()
 @ObjectType({ description: 'Course' })

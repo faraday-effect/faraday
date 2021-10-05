@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { ObjectType, InputType, Field, Int } from '@nestjs/graphql';
 import { Term } from '.';
-import { FieldColumn } from 'src/decorators';
+import { FieldColumn } from '@/decorators';
 
 @Entity()
 @ObjectType({ description: 'Named range of dates' })

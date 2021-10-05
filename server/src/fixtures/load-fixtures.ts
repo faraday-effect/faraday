@@ -4,18 +4,9 @@ import {
   EntityManager,
   getManager,
 } from 'typeorm';
-import {
-  Activity,
-  Course,
-  DateRange,
-  Department,
-  Module,
-  Offering,
-  Prefix,
-  Resource,
-  Term,
-  Topic,
-} from '@/content/models';
+import { Activity, Module, Resource, Topic } from '@/content/models';
+import { DateRange, Offering, Term } from '@/schedule/models';
+import { Course, Department, Prefix } from '@/catalog/models';
 
 async function createTerm(manager: EntityManager) {
   const instructionRange = manager.create(DateRange, {
