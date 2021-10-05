@@ -64,26 +64,35 @@ async function createContent(manager: EntityManager, offering: Offering) {
     offering,
   });
 
-  const topic = await manager.save(Topic, {
-    title: 'Introduction to Git',
-    description: 'A brief history of revision control and introduction to Git',
-    sequence: 1,
-    module,
-  });
+  const topic = await manager.save(Topic, [
+    {
+      title: 'Introduction to Git',
+      description:
+        'A brief history of revision control and introduction to Git',
+      sequence: 1,
+      module,
+    },
+    {
+      title: 'Grokking Git',
+      description: 'Under the hood with Git',
+      sequence: 2,
+      module,
+    },
+  ]);
 
   await manager.save(Activity, {
     title: 'Alice, Bob, and Git',
     description: 'Practice using Git with another class member',
     sequence: 1,
     details: {},
-    topic,
+    topic: topic[0],
   });
 
   await manager.save(Resource, {
     name: 'Intro to Git',
     description: 'Slides for the Intro to Git talk',
     details: {},
-    topic,
+    topic: topic[0],
   });
 }
 
