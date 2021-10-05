@@ -10,10 +10,7 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title> fe-pdf </q-toolbar-title>
-
-        <div>Faraday</div>
+        <q-toolbar-title> Faraday </q-toolbar-title>
       </q-toolbar>
     </q-header>
 

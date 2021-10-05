@@ -1,13 +1,13 @@
 import * as _ from 'lodash';
 import 'pdfjs-dist/webpack';
 import { getDocument } from 'pdfjs-dist';
+import { reactive } from 'vue';
+import { PageViewport } from 'pdfjs-dist/types/src/display/display_utils';
 import {
   PDFDocumentLoadingTask,
   PDFDocumentProxy,
   PDFPageProxy,
-} from 'pdfjs-dist/types/display/api';
-import { PageViewport } from 'pdfjs-dist/types/display/display_utils';
-import { reactive } from 'vue';
+} from 'pdfjs-dist/types/src/display/api';
 
 const PIXEL_RATIO = window.devicePixelRatio || 1;
 

@@ -8,16 +8,6 @@
         "name": "name",
         "description": "Term name (e.g., 'Fall 2021')",
         "type": "string"
-      },
-      {
-        "name": "startDate",
-        "description": "Starting date of term",
-        "type": "date"
-      },
-      {
-        "name": "endDate",
-        "description": "Ending date of term",
-        "type": "date"
       }
     ]
   },
@@ -27,6 +17,18 @@
       "to": "Offering",
       "type": "oneToMany",
       "description": "Offerings of courses during this term"
+    },
+    {
+      "name": "instructionDates",
+      "to": "DateRange",
+      "type": "manyToOne",
+      "description": "Date range for instruction"
+    },
+    {
+      "name": "finalsDates",
+      "to": "DateRange",
+      "type": "manyToOne",
+      "description": "Date range for final exams"
     }
   ]
 }

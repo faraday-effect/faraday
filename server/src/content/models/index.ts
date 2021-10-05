@@ -7,3 +7,4 @@ export * from './prefix.model';
 export * from './resource.model';
 export * from './term.model';
 export * from './topic.model';
+export * from './date-range.model';

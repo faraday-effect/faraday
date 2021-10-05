@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "ty
 import { ObjectType, InputType, Field, Int } from "@nestjs/graphql";
 import { Topic, Resource } from ".";
 import { FieldColumn } from 'src/decorators';
+import { GraphQLJSONObject } from 'graphql-type-json';
 
 @Entity()
 @ObjectType({ description: "Course activity (low-level organizational unit)" })
@@ -19,9 +20,9 @@ export class Activity {
   @FieldColumn("Collating sequence of activities within topic", () => Int)
   sequence: number;
 
-  @Field({ description: "Details of this activity" })
-  @Column({ comment: "Details of this activity", type: "jsonb" })
-  details: string;
+  @Field(() => GraphQLJSONObject, { description: "Details of this activity" })
+  @Column({ type: "jsonb", comment: "Details of this activity" })
+  details: Object;
 
   @Field(() => Topic)
   @ManyToOne(() => Topic, topic => topic.activities)
@@ -43,8 +44,8 @@ export class ActivityCreateInput {
   @FieldColumn("Collating sequence of activities within topic", () => Int)
   sequence: number;
 
-  @Field({ description: "Details of this activity" })
-  details: string;
+  @Field(() => GraphQLJSONObject, { description: "Details of this activity" })
+  details: Object;
 }
 
 @InputType()
@@ -61,7 +62,7 @@ export class ActivityUpdateInput {
   @FieldColumn("Collating sequence of activities within topic", () => Int, { nullable: true })
   sequence?: number;
 
-  @Field({ description: "Details of this activity", nullable: true })
-  details?: string;
+  @Field(() => GraphQLJSONObject, { description: "Details of this activity", nullable: true })
+  details?: Object;
 }
 

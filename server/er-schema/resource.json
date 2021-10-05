@@ -5,8 +5,8 @@
     "pk": "id",
     "attributes": [
       {
-        "name": "title",
-        "description": "Title of this resource",
+        "name": "name",
+        "description": "Name of this resource",
         "type": "string"
       },
       {

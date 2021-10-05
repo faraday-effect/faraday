@@ -22,10 +22,15 @@ type Activity {
   sequence: Int!
 
   """Details of this activity"""
-  details: String!
+  details: JSONObject!
   topic: Topic!
   resources: [Resource!]!
 }
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 """Course"""
 type Course {
@@ -100,8 +105,8 @@ type Resource {
   """Primary key"""
   id: Int!
 
-  """Title of this resource"""
-  title: String!
+  """Name of this resource"""
+  name: String!
 
   """Description of this resource"""
   description: String!
@@ -113,11 +118,6 @@ type Resource {
   activity: Activity!
 }
 
-"""
-The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSONObject @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
-
 """Academic term"""
 type Term {
   """Primary key"""
@@ -125,19 +125,10 @@ type Term {
 
   """Term name (e.g., 'Fall 2021')"""
   name: String!
-
-  """Starting date of term"""
-  startDate: DateTime!
-
-  """Ending date of term"""
-  endDate: DateTime!
   offerings: [Offering!]!
+  instructionDates: DateRange!
+  finalsDates: DateRange!
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 """Course topic (mid-level organizational unit)"""
 type Topic {
@@ -157,6 +148,28 @@ type Topic {
   activities: [Activity!]!
 }
 
+"""Named range of dates"""
+type DateRange {
+  """Primary key"""
+  id: Int!
+
+  """Name of this range"""
+  name: String!
+
+  """Starting date of range (inclusive)"""
+  startDate: DateTime!
+
+  """Ending date of range (inclusive)"""
+  endDate: DateTime!
+  instructionDates: [Term!]!
+  finalsDates: [Term!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   """Read current status"""
   readStatus: Status!
@@ -171,8 +184,8 @@ type Mutation {
 }
 
 input ResourceCreateInput {
-  """Title of this resource"""
-  title: String!
+  """Name of this resource"""
+  name: String!
 
   """Description of this resource"""
   description: String!
@@ -185,8 +198,8 @@ input ResourceUpdateInput {
   """Primary key"""
   id: Int!
 
-  """Title of this resource"""
-  title: String
+  """Name of this resource"""
+  name: String
 
   """Description of this resource"""
   description: String

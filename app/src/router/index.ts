@@ -24,7 +24,7 @@ export default route<StateInterface>(function (/* { store, ssrContext } */) {
     ? createWebHistory
     : createWebHashHistory;
 
-  const Router = createRouter({
+  return createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
 
@@ -35,6 +35,4 @@ export default route<StateInterface>(function (/* { store, ssrContext } */) {
       process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE
     ),
   });
-
-  return Router;
 });

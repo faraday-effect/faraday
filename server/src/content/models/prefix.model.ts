@@ -3,6 +3,7 @@ import { ObjectType, InputType, Field, Int } from "@nestjs/graphql";
 import { Course } from ".";
 import { FieldColumn } from 'src/decorators';
 
+
 @Entity()
 @ObjectType({ description: "Course prefix (e.g., `COS`, `PHY`)" })
 export class Prefix {

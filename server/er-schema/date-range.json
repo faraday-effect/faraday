@@ -1,0 +1,38 @@
+{
+  "entity": {
+    "pk": "id",
+    "name": "DateRange",
+    "description": "Named range of dates",
+    "attributes": [
+      {
+        "name": "name",
+        "description": "Name of this range",
+        "type": "string"
+      },
+      {
+        "name": "startDate",
+        "description": "Starting date of range (inclusive)",
+        "type": "date"
+      },
+      {
+        "name": "endDate",
+        "description": "Ending date of range (inclusive)",
+        "type": "date"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "instructionDates",
+      "description": "Date range for instruction",
+      "type": "oneToMany",
+      "to": "Term"
+    },
+    {
+      "name": "finalsDates",
+      "description": "Date range for final exams",
+      "type": "oneToMany",
+      "to": "Term"
+    }
+  ]
+}
