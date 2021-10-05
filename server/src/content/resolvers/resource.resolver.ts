@@ -13,12 +13,12 @@ export class ResourceResolver {
   }
 
   @Query(() => Resource)
-  readResource(id: number) {
+  readOneResource(id: number) {
     return this.resourceService.readOne(id);
   }
 
   @Query(() => [Resource])
-  readResources() {
+  readAllResources() {
     return this.resourceService.readAll();
   }
 

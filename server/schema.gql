@@ -160,8 +160,8 @@ type Topic {
 type Query {
   """Read current status"""
   readStatus: Status!
-  readResource: Resource!
-  readResources: [Resource!]!
+  readOneResource: Resource!
+  readAllResources: [Resource!]!
 }
 
 type Mutation {
