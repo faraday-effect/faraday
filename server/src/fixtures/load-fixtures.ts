@@ -91,7 +91,11 @@ async function createContent(manager: EntityManager, offering: Offering) {
   await manager.save(Resource, {
     name: 'Intro to Git',
     description: 'Slides for the Intro to Git talk',
-    details: {},
+    details: {
+      resourceType: 'file',
+      fileType: 'pdf',
+      fileName: 'git-intro.slides.pdf',
+    },
     topic: topic[0],
   });
 }

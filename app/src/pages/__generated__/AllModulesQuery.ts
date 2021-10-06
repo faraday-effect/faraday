@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: AllModules
+// GraphQL query operation: AllModulesQuery
 // ====================================================
 
-export interface AllModules_readAllModules_resources {
+export interface AllModulesQuery_modules_resources {
   __typename: "Resource";
   /**
    * Primary key
@@ -27,7 +27,7 @@ export interface AllModules_readAllModules_resources {
   details: any;
 }
 
-export interface AllModules_readAllModules_topics_resources {
+export interface AllModulesQuery_modules_topics_resources {
   __typename: "Resource";
   /**
    * Primary key
@@ -47,7 +47,7 @@ export interface AllModules_readAllModules_topics_resources {
   details: any;
 }
 
-export interface AllModules_readAllModules_topics_activities_resources {
+export interface AllModulesQuery_modules_topics_activities_resources {
   __typename: "Resource";
   /**
    * Primary key
@@ -63,7 +63,7 @@ export interface AllModules_readAllModules_topics_activities_resources {
   description: string;
 }
 
-export interface AllModules_readAllModules_topics_activities {
+export interface AllModulesQuery_modules_topics_activities {
   __typename: "Activity";
   /**
    * Primary key
@@ -81,10 +81,10 @@ export interface AllModules_readAllModules_topics_activities {
    * Details of this activity
    */
   details: any;
-  resources: AllModules_readAllModules_topics_activities_resources[];
+  resources: AllModulesQuery_modules_topics_activities_resources[];
 }
 
-export interface AllModules_readAllModules_topics {
+export interface AllModulesQuery_modules_topics {
   __typename: "Topic";
   /**
    * Primary key
@@ -98,11 +98,11 @@ export interface AllModules_readAllModules_topics {
    * Description of this topic
    */
   description: string;
-  resources: AllModules_readAllModules_topics_resources[];
-  activities: AllModules_readAllModules_topics_activities[];
+  resources: AllModulesQuery_modules_topics_resources[];
+  activities: AllModulesQuery_modules_topics_activities[];
 }
 
-export interface AllModules_readAllModules {
+export interface AllModulesQuery_modules {
   __typename: "Module";
   /**
    * Primary key
@@ -116,10 +116,10 @@ export interface AllModules_readAllModules {
    * Description of this module
    */
   description: string;
-  resources: AllModules_readAllModules_resources[];
-  topics: AllModules_readAllModules_topics[];
+  resources: AllModulesQuery_modules_resources[];
+  topics: AllModulesQuery_modules_topics[];
 }
 
-export interface AllModules {
-  readAllModules: AllModules_readAllModules[];
+export interface AllModulesQuery {
+  modules: AllModulesQuery_modules[];
 }

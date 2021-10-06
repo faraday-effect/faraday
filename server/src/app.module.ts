@@ -17,7 +17,9 @@ import { CatalogModule } from '@/catalog/catalog.module';
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
     }),
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      expandVariables: true,
+    }),
     FileModule,
     TelemetryModule,
     ContentModule,

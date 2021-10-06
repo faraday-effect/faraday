@@ -1,8 +1,8 @@
 <template>
   <q-page padding>
     <h1>Podium</h1>
-    <ol>
-      <li v-for="(module, idx) in result.readAllModules" :key="idx">
+    <ol v-if="result">
+      <li v-for="(module, idx) in result.modules" :key="idx">
         <strong>Module</strong>
         {{ module.title }}&mdash;{{ module.description }}
         <ol>
@@ -10,7 +10,8 @@
             <strong>Topic</strong>
             {{ topic.title }}&mdash;{{ topic.description }}
             <span v-for="(resource, idx) in topic.resources" :key="idx">
-              [{{ resource.name }}&mdash;{{ resource.description }}]
+              [{{ resource.name }}&mdash;{{ resource.description }}
+              {{ resource.details }}]
             </span>
             <ol>
               <li v-for="(activity, idx) in topic.activities" :key="idx">
@@ -29,21 +30,15 @@
 import { defineComponent } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
-import { AllModules } from 'pages/__generated__/AllModules';
+import { AllModulesQuery } from 'pages/__generated__/AllModulesQuery';
 
 export default defineComponent({
   name: 'PodiumPage',
 
-  data() {
-    return {
-      response: 'NOTHING YET',
-    };
-  },
-
   setup() {
-    const { result, loading, error } = useQuery<AllModules>(gql`
-      query AllModules {
-        readAllModules {
+    const { result, loading, error } = useQuery<AllModulesQuery>(gql`
+      query AllModulesQuery {
+        modules: readAllModules {
           id
           title
           description

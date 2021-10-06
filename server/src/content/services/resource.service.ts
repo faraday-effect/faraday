@@ -1,18 +1,14 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import {
-  Resource,
-  ResourceCreateInput,
-  ResourceUpdateInput
-} from "../models";
-import { Repository } from "typeorm";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Resource, ResourceCreateInput, ResourceUpdateInput } from '../models';
+import { Repository } from 'typeorm';
 import { BaseService } from '@/shared/base.service';
 
 @Injectable()
 export class ResourceService extends BaseService<Resource> {
   constructor(
     @InjectRepository(Resource)
-    private readonly repo: Repository<Resource>
+    private readonly repo: Repository<Resource>,
   ) {
     super(repo);
   }
@@ -24,9 +20,9 @@ export class ResourceService extends BaseService<Resource> {
 
   // Selectively include those relations that are always retrieved.
   private alwaysRelate = [
-        // "module",
-        // "topic",
-        // "activity",
+    // "module",
+    // "topic",
+    // "activity",
   ];
 
   // Read a single Resource
@@ -40,29 +36,27 @@ export class ResourceService extends BaseService<Resource> {
   }
 
   // Methods to retrieve related entities.
-
   retrieveRelatedModule(resource: Resource) {
-    return this.retrieveOne(resource, "module");
+    return this.retrieveOne(resource, 'module');
   }
 
   retrieveRelatedTopic(resource: Resource) {
-    return this.retrieveOne(resource, "topic");
+    return this.retrieveOne(resource, 'topic');
   }
 
   retrieveRelatedActivity(resource: Resource) {
-    return this.retrieveOne(resource, "activity");
+    return this.retrieveOne(resource, 'activity');
   }
 
   // Update a Resource.
   update(updateInput: ResourceUpdateInput) {
     return this.repo
-    .preload(updateInput)
-    .then(result => this.repo.save(result));
+      .preload(updateInput)
+      .then((result) => this.repo.save(result));
   }
 
   // Delete a Resource.
   delete(id: number) {
-    return this.repo.delete(id).then(result => result.affected);
+    return this.repo.delete(id).then((result) => result.affected);
   }
 }
-

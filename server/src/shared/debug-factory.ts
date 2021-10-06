@@ -3,7 +3,7 @@ import * as _ from 'lodash';
 import chalk from 'chalk';
 import { printTable } from './formatting';
 
-const BASE_NAMESPACE = 'cap';
+const BASE_NAMESPACE = 'faraday';
 
 const debugCache = new Map<string, debug.Debugger>();
 
