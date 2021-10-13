@@ -23,19 +23,31 @@
         </ol>
       </li>
     </ol>
+
+    <q-btn label="Click Me" @click="sendMessage" />
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
 import { AllModulesQuery } from 'pages/__generated__/AllModulesQuery';
+import { io } from 'socket.io-client';
 
 export default defineComponent({
   name: 'PodiumPage',
 
   setup() {
+    let socket: Socket;
+    onMounted(() => {
+      socket = io('ws://localhost:3000/podium');
+    });
+
+    const sendMessage = () => {
+      socket.send('clicky');
+    };
+
     const { result, loading, error } = useQuery<AllModulesQuery>(gql`
       query AllModulesQuery {
         modules: readAllModules {
@@ -73,7 +85,7 @@ export default defineComponent({
         }
       }
     `);
-    return { result, loading, error };
+    return { result, loading, error, sendMessage };
   },
 });
 </script>

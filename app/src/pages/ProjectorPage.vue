@@ -1,30 +1,44 @@
 <template>
   <q-page padding>
     <h1>I'm on the Big Screen</h1>
-    <div>[{{ response }}]</div>
+    <div>[{{ fromServer }}]</div>
     <ul>
       <li>{{ result }}</li>
       <li>{{ loading }}</li>
       <li>{{ error }}</li>
     </ul>
+
+    <q-btn label="Click Me" @click="sendMessage" />
   </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
+import { io, Socket } from 'socket.io-client';
 
 export default defineComponent({
   name: 'ProjectorPage',
 
-  data() {
-    return {
-      response: 'NOTHING YET',
-    };
-  },
-
   setup() {
+    let fromServer = ref('NOTHING YET');
+
+    let socket: Socket;
+    onMounted(() => {
+      socket = io('ws://localhost:3000/projector');
+
+      socket.on('message', (response: string) => {
+        console.log('RESPONSE', response);
+        fromServer.value = response;
+      });
+      socket.send('hello from quasar');
+    });
+
+    const sendMessage = () => {
+      socket.send('clicky');
+    };
+
     const { result, loading, error } = useQuery(gql`
       query getStatus {
         readStatus {
@@ -32,16 +46,7 @@ export default defineComponent({
         }
       }
     `);
-    return { result, loading, error };
-  },
-
-  mounted() {
-    console.log('SOCKET', this.$sio.id);
-    this.$sio.on('message', (response: string) => {
-      console.log('RESPONSE', response);
-      this.response = response;
-    });
-    this.$sio.send('hello from quasar');
+    return { result, loading, error, fromServer, sendMessage };
   },
 });
 </script>

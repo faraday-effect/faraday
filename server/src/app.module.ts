@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ProjectorGateway } from './gateways/projector.gateway';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { FileModule } from './file/file.module';
@@ -8,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContentModule } from './content/content.module';
 import { ConfigModule } from '@nestjs/config';
 import { CatalogModule } from '@/catalog/catalog.module';
+import { GatewayModule } from './gateway/gateway.module';
 
 @Module({
   imports: [
@@ -24,8 +24,8 @@ import { CatalogModule } from '@/catalog/catalog.module';
     TelemetryModule,
     ContentModule,
     CatalogModule,
+    GatewayModule,
   ],
   controllers: [],
-  providers: [ProjectorGateway],
 })
 export class AppModule {}

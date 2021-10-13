@@ -10,22 +10,22 @@ import {
 import { Logger } from '@nestjs/common';
 import { Socket, Server } from 'socket.io';
 
-@WebSocketGateway()
-export class ProjectorGateway
+@WebSocketGateway({ namespace: 'podium' })
+export class PodiumGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
-  private logger = new Logger('ProjectorGateway');
+  private logger = new Logger('PodiumGateway');
 
   afterInit(server: Server): any {
-    this.logger.log('Projector gateway initialized');
+    this.logger.log('Podium gateway initialized');
   }
 
   handleConnection(client: Socket, ...args): any {
-    this.logger.log(`Projector ${client.id} connected`);
+    this.logger.log(`Podium ${client.id} connected`);
   }
 
   handleDisconnect(client: Socket): any {
-    this.logger.log(`Projector ${client.id} disconnect`);
+    this.logger.log(`Podium ${client.id} disconnect`);
   }
 
   @SubscribeMessage('message')

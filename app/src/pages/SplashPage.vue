@@ -47,8 +47,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import QuickResponseCode from 'components/QuickResponseCode.vue';
-import RealTimeClock from 'components/WallClock.vue';
-import CountDownTimer from 'components/CountDownTimer.vue';
+import RealTimeClock from 'components/time/WallClock.vue';
+import CountDownTimer from 'components/time/CountDownTimer.vue';
 import { DateTime } from 'luxon';
 
 export default defineComponent({

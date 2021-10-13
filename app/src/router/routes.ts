@@ -21,6 +21,11 @@ const routes: RouteRecordRaw[] = [
         path: '',
         component: () => import('pages/ProjectorPage.vue'),
       },
+      {
+        name: 'splash',
+        path: 'splash',
+        component: () => import('pages/SplashPage.vue'),
+      },
     ],
   },
 
