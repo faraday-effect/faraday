@@ -18,11 +18,6 @@
         "name": "sequence",
         "description": "Collating sequence of activities within topic",
         "type": "integer"
-      },
-      {
-        "name": "details",
-        "description": "Details of this activity",
-        "type": "json"
       }
     ]
   },
@@ -38,6 +33,12 @@
       "to": "Resource",
       "type": "oneToMany",
       "description": "Resources for this activity"
+    },
+    {
+      "name": "steps",
+      "to": "Step",
+      "type": "oneToMany",
+      "description": "Steps for this activity"
     }
   ]
 }

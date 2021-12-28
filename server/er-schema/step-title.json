@@ -1,0 +1,22 @@
+{
+  "entity": {
+    "name": "StepTitle",
+    "description": "Title for one step of an activity",
+    "pk": "id",
+    "attributes": [
+      {
+        "name": "title",
+        "type": "text",
+        "description": "Title"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "name": "steps",
+      "to": "Step",
+      "type": "oneToMany",
+      "description": "Steps with this title"
+    }
+  ]
+}
