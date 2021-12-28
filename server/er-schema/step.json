@@ -5,6 +5,11 @@
     "pk": "id",
     "attributes": [
       {
+        "name": "sequence",
+        "description": "Ordering of this step within an activity",
+        "type": "integer"
+      },
+      {
         "name": "details",
         "description": "Details of this step",
         "type": "text"
@@ -13,9 +18,9 @@
   },
   "relationships": [
     {
-      "name": "title",
+      "name": "stepTitle",
       "to": "StepTitle",
-      "type": "oneToMany",
+      "type": "manyToOne",
       "description": "Step title (e.g., Read, Submit)"
     },
     {
