@@ -33,7 +33,7 @@ import { defineComponent, onMounted } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
 import { AllModulesQuery } from 'pages/__generated__/AllModulesQuery';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
 export default defineComponent({
   name: 'PodiumPage',
