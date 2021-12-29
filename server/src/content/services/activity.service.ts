@@ -53,14 +53,14 @@ export class ActivityService extends BaseService<Activity> {
     return this.retrieveOne(activity, "steps");
   }
 
-  // Update a Activity.
+  // Update an Activity.
   update(updateInput: ActivityUpdateInput) {
     return this.repo
     .preload(updateInput)
     .then(result => this.repo.save(result));
   }
 
-  // Delete a Activity.
+  // Delete an Activity.
   delete(id: number) {
     return this.repo.delete(id).then(result => result.affected);
   }

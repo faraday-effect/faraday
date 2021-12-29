@@ -3,7 +3,7 @@ import { createHttpLink, InMemoryCache } from '@apollo/client/core';
 // import type { BootFileParams } from '@quasar/app';
 
 export /* async */ function getClientOptions /* options?: Partial<BootFileParams<any>> */() {
-/* {app, router, ...} */
+  /* {app, router, ...} */
   return <ApolloClientOptions<unknown>>Object.assign(
     // General options.
     <ApolloClientOptions<unknown>>{
