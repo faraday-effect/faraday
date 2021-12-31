@@ -77,10 +77,6 @@ export interface AllModulesQuery_modules_topics_activities {
    * Description of this activity
    */
   description: string;
-  /**
-   * Details of this activity
-   */
-  details: any;
   resources: AllModulesQuery_modules_topics_activities_resources[];
 }
 

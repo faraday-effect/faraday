@@ -19,7 +19,12 @@ export class CourseService extends BaseService<Course> {
   }
 
   // Selectively include those relations that are always retrieved.
-  private alwaysRelate = ['prefix', 'department', 'offerings'];
+  private alwaysRelate = [
+    'prefix',
+    'department',
+    'offerings',
+    'offerings.term',
+  ];
 
   // Read a single Course
   readOne(id: number) {

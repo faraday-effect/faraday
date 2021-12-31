@@ -8,6 +8,7 @@ import { ContentModule } from './content/content.module';
 import { ConfigModule } from '@nestjs/config';
 import { CatalogModule } from '@/catalog/catalog.module';
 import { GatewayModule } from './gateway/gateway.module';
+import { ScheduleModule } from './schedule/schedule.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { GatewayModule } from './gateway/gateway.module';
     ContentModule,
     CatalogModule,
     GatewayModule,
+    ScheduleModule,
   ],
   controllers: [],
 })

@@ -1,8 +1,15 @@
 <template>
   <q-page padding>
     <h1>Podium</h1>
-    <ol v-if="result">
-      <li v-for="(module, idx) in result.modules" :key="idx">
+    <h4>Courses</h4>
+    <ol>
+      <li v-for="(course, id) in allCourses.courses" :key="id">
+        {{ course.prefix.prefix }} {{ course.number }}&mdash;{{ course.title }}
+      </li>
+    </ol>
+    <h4>Modules</h4>
+    <ol v-if="allModules">
+      <li v-for="(module, idx) in allModules.modules" :key="idx">
         <strong>Module</strong>
         {{ module.title }}&mdash;{{ module.description }}
         <ol>
@@ -32,8 +39,9 @@
 import { defineComponent, onMounted } from 'vue';
 import { useQuery } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
-import { AllModulesQuery } from 'pages/__generated__/AllModulesQuery';
 import { io, Socket } from 'socket.io-client';
+import { AllCoursesQuery } from 'pages/__generated__/AllCoursesQuery';
+import { AllModulesQuery } from 'pages/__generated__/AllModulesQuery';
 
 export default defineComponent({
   name: 'PodiumPage',
@@ -48,7 +56,24 @@ export default defineComponent({
       socket.send('clicky');
     };
 
-    const { result, loading, error } = useQuery<AllModulesQuery>(gql`
+    const { result: allCourses } = useQuery<AllCoursesQuery>(gql`
+      query AllCoursesQuery {
+        courses: readAllCourses {
+          id
+          prefix {
+            prefix
+          }
+          number
+          title
+        }
+      }
+    `);
+
+    const {
+      result: allModules,
+      loading,
+      error,
+    } = useQuery<AllModulesQuery>(gql`
       query AllModulesQuery {
         modules: readAllModules {
           id
@@ -74,7 +99,6 @@ export default defineComponent({
               id
               title
               description
-              details
               resources {
                 id
                 name
@@ -85,7 +109,7 @@ export default defineComponent({
         }
       }
     `);
-    return { result, loading, error, sendMessage };
+    return { allCourses, allModules, loading, error, sendMessage };
   },
 });
 </script>

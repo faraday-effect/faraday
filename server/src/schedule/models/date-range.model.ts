@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { ObjectType, InputType, Field, Int } from '@nestjs/graphql';
 import { Term } from '.';
 import { FieldColumn } from '@/decorators';
+import { GraphQLDate } from '@/shared/date.graphql';
 
 @Entity()
 @ObjectType({ description: 'Named range of dates' })
@@ -13,11 +14,13 @@ export class DateRange {
   @FieldColumn('Name of this range')
   name: string;
 
-  @Field({ description: 'Starting date of range (inclusive)' })
+  @Field(() => GraphQLDate, {
+    description: 'Starting date of range (inclusive)',
+  })
   @Column({ type: 'date', comment: 'Starting date of range (inclusive)' })
   startDate: Date;
 
-  @Field({ description: 'Ending date of range (inclusive)' })
+  @Field(() => GraphQLDate, { description: 'Ending date of range (inclusive)' })
   @Column({ type: 'date', comment: 'Ending date of range (inclusive)' })
   endDate: Date;
 

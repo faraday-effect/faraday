@@ -3,9 +3,9 @@
     <h1>I'm on the Big Screen</h1>
     <div>[{{ fromServer }}]</div>
     <ul>
-      <li>{{ result }}</li>
-      <li>{{ loading }}</li>
-      <li>{{ error }}</li>
+      <li>Result: {{ result }}</li>
+      <li>Loading: {{ loading }}</li>
+      <li>Error: {{ error }}</li>
     </ul>
 
     <q-btn label="Click Me" @click="sendMessage" />

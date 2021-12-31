@@ -1,3 +1,6 @@
+import PrettyError = require('pretty-error');
+PrettyError.start();
+
 import {
   Connection,
   createConnection,
@@ -11,22 +14,33 @@ import { Course, Department, Prefix } from '@/catalog/models';
 async function createTerm(manager: EntityManager) {
   const instructionRange = manager.create(DateRange, {
     name: 'Fall 2021 Instruction',
-    startDate: '2020-08-30',
-    endDate: '2020-12-10',
+    startDate: '2021-08-30',
+    endDate: '2021-12-10',
   });
 
   const finalsRange = manager.create(DateRange, {
     name: 'Fall 2021 Finals',
-    startDate: '2020-12-13',
-    endDate: '2020-12-16',
+    startDate: '2021-12-13',
+    endDate: '2021-12-16',
   });
 
   await manager.save([instructionRange, finalsRange]);
 
-  return manager.save(Term, {
+  await manager.save(Term, {
     name: 'Fall 2021',
     instructionDates: instructionRange,
     finalsDates: finalsRange,
+  });
+
+  const instruction2 = manager.create(DateRange, {
+    name: 'Interterm 2022 Instruction',
+    startDate: '2022-01-02',
+    endDate: '2022-01-23',
+  });
+
+  return manager.save(Term, {
+    name: 'Interterm 2022',
+    instructionDates: instruction2,
   });
 }
 
